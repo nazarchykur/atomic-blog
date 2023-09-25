@@ -1,3 +1,62 @@
+# context API
+
+![Alt text](src/screenshots/ksnip_20230925-122014.png)
+
+![Alt text](src/screenshots/ksnip_20230925-122410.png)
+
+**Context API** is a solution provided by React for managing and sharing state or data across multiple components in a more efficient way, especially when dealing with prop drilling becomes cumbersome. It allows you to create a central store of data that can be accessed by any component in your application without the need to pass props down the component tree manually.
+
+Here's how you can use the Context API to address prop drilling:
+
+**1. Create a Context**:
+
+First, you need to create a context using the `createContext` function from React.
+
+```jsx
+import React, { createContext, useContext, useState } from "react";
+
+// Create a context with an initial value (optional)
+const MyContext = createContext();
+```
+
+**2. Provide Data**:
+
+Wrap your entire application or the part of your application where you want to share data with a `Provider` component. The `Provider` component will supply the data to all components within its subtree.
+
+```jsx
+function App() {
+  const [data, setData] = useState("Some data to share");
+
+  return (
+    <MyContext.Provider value={data}>
+      {/* Rest of your application */}
+    </MyContext.Provider>
+  );
+}
+```
+
+**3. Consume Data**:
+
+In any component where you want to access the shared data, use the `useContext` hook to consume the context.
+
+```jsx
+function MyComponent() {
+  const sharedData = useContext(MyContext);
+
+  return <div>{sharedData}</div>;
+}
+```
+
+By using the Context API, you can avoid prop drilling and directly access the shared data from any component within the context's provider. This makes it easier to manage global or shared state without passing props through intermediary components.
+
+**Advanced Usage**:
+
+- You can create multiple contexts for different parts of your application if needed.
+- Context can also hold functions or objects, not just simple values.
+- To update the context data, you can pass callback functions as part of the context value.
+
+However, it's important to use context judiciously and not overuse it for every piece of shared data in your application, as it may make your code less predictable and harder to maintain in some cases. Consider using context for global state or shared data that genuinely needs to be accessible from multiple parts of your application.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
