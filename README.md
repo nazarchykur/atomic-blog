@@ -253,6 +253,67 @@ In React, a component's instance (also referred to as a component instance or co
 
 It's important to note that React is designed to optimize re-renders and avoid unnecessary work. React's reconciliation process compares the previous and current virtual DOM representations and updates the actual DOM only when needed. This makes React efficient and performant, especially when used correctly and following best practices.
 
+# devtools react Profiler
+
+![Alt text](src/screenshots/ksnip_20230928-105246.png)
+
+![Alt text](src/screenshots/ksnip_20230928-105356.png)
+
+The React Profiler is a powerful tool included in React DevTools that allows you to analyze the performance of your React application, identify performance bottlenecks, and gain insights into how your components render. It's particularly helpful for diagnosing and optimizing the rendering and update cycles of your components.
+
+Here's an overview of how to use the React Profiler:
+
+**1. Install React DevTools**:
+
+Make sure you have the React DevTools extension installed in your browser. You can download it from the Chrome Web Store or Firefox Add-ons.
+
+**2. Open React DevTools**:
+
+Open your application in the browser, and then open the React DevTools extension by clicking on its icon in the browser's toolbar.
+
+**3. Switch to the Profiler Tab**:
+
+In the React DevTools panel, switch to the "Profiler" tab. This tab is dedicated to profiling your React application.
+
+**4. Start Profiling**:
+
+Click the "Start Profiling" button to begin profiling your application. This will record performance data as your application runs.
+
+**5. Interact with Your Application**:
+
+Perform actions or interactions in your application that you want to profile. For example, navigate to different pages, click buttons, or interact with UI elements. The Profiler will record data during these interactions.
+
+**6. Stop Profiling**:
+
+Once you've gathered enough data, click the "Stop Profiling" button to stop the profiling session.
+
+**7. Analyze the Profiling Results**:
+
+After stopping the profiling session, you'll see a flame chart and a summary of the profiling results. The flame chart visually represents the rendering and update cycles of your components.
+
+- **Main Thread**: The main thread contains information about your components' render and commit phases.
+- **Interactions**: Interactions represent the user interactions (e.g., clicks) that you triggered during profiling.
+
+**8. Identify Performance Issues**:
+
+- Look for components that take a long time to render or update. These components are represented as bars in the flame chart.
+- Pay attention to the interactions and how they impact component rendering. You can click on interactions to see which components were affected.
+
+**9. Optimize Your Code**:
+
+Based on the profiling results, you can make optimizations to your code. This might involve:
+
+- Reducing unnecessary renders by using `React.memo`, `useMemo`, or `useCallback`.
+- Splitting large components into smaller ones to improve rendering performance.
+- Minimizing the number of expensive calculations or side effects in your components.
+- Utilizing React's built-in performance optimization tools.
+
+**10. Rerun Profiling**:
+
+Repeat the profiling process after making optimizations to ensure that your changes have improved the performance of your application.
+
+The React Profiler is a valuable tool for diagnosing performance issues in React applications. By using it regularly, you can ensure that your application remains fast and responsive as it evolves and grows.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
