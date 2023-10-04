@@ -452,6 +452,10 @@ Use `useMemo` and `useCallback` in the following situations:
 
 By employing these hooks strategically, you can optimize the performance of your React components, especially in scenarios involving complex computations or callback prop passing.
 
+# Don't Optimize Prematurely
+
+![Alt text](src/screenshots/ksnip_20231004-175635.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
