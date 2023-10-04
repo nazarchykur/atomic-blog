@@ -367,6 +367,91 @@ In this example:
 
 Memoization can significantly improve the performance of functions that have expensive computations or I/O operations, as it reduces redundant work by reusing cached results. It's commonly used in various contexts, including optimizing recursive algorithms, web applications, and data processing. Libraries like `lodash.memoize` and `reselect` provide advanced memoization capabilities for React applications and other JavaScript projects.
 
+# useMemo and useCallback
+
+![Alt text](src/screenshots/ksnip_20231004-160439.png)
+
+![Alt text](src/screenshots/ksnip_20231004-160646.png)
+
+![Alt text](src/screenshots/ksnip_20231004-160809.png)
+
+`useMemo` and `useCallback` are two React hooks that allow you to optimize the performance of your functional components by memoizing values and functions, respectively. They are particularly useful when dealing with expensive calculations or preventing unnecessary re-renders. Let's explore how each of them works:
+
+### `useMemo`
+
+`useMemo` is used to memoize a value, ensuring that the value is only recalculated when one or more of its dependencies change. Its syntax is as follows:
+
+```javascript
+const memoizedValue = useMemo(() => computeValue(), [dependency1, dependency2]);
+```
+
+- The first argument to `useMemo` is a function that computes the memoized value.
+- The second argument is an array of dependencies. The memoized value will only be recalculated when any of these dependencies change.
+
+Example:
+
+```javascript
+import React, { useMemo } from "react";
+
+function MyComponent({ count }) {
+  const expensiveValue = useMemo(() => {
+    console.log("Recalculating expensiveValue...");
+    return count * 2;
+  }, [count]);
+
+  return <div>Expensive Value: {expensiveValue}</div>;
+}
+```
+
+In this example, `expensiveValue` is memoized using `useMemo`. It will only be recalculated when the `count` prop changes.
+
+### `useCallback`
+
+`useCallback` is used to memoize a function, ensuring that the function reference remains the same between renders unless its dependencies change. This is useful to prevent unnecessary re-renders of child components that receive a callback prop. Its syntax is as follows:
+
+```javascript
+const memoizedCallback = useCallback(
+  () => callbackFunction(),
+  [dependency1, dependency2]
+);
+```
+
+- The first argument to `useCallback` is the callback function you want to memoize.
+- The second argument is an array of dependencies. The memoized callback will only be recreated when any of these dependencies change.
+
+Example:
+
+```javascript
+import React, { useCallback, useState } from "react";
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    console.log("Button clicked!");
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <button onClick={handleClick}>Increment Count</button>
+    </div>
+  );
+}
+```
+
+In this example, `handleClick` is memoized using `useCallback`. It will only be recreated when the `count` state changes.
+
+### When to Use `useMemo` and `useCallback`
+
+Use `useMemo` and `useCallback` in the following situations:
+
+- **`useMemo`**: Use it to memoize values that are computationally expensive to calculate and should only be recalculated when specific dependencies change. This helps reduce unnecessary calculations and re-renders.
+
+- **`useCallback`**: Use it to memoize callback functions, especially when passing them as props to child components. Memoizing callbacks ensures that child components don't re-render unnecessarily when the parent component re-renders.
+
+By employing these hooks strategically, you can optimize the performance of your React components, especially in scenarios involving complex computations or callback prop passing.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
